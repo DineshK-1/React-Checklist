@@ -1,0 +1,27 @@
+.navigation{
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #17202A;
+    
+    .Logo{
+        align-self: center;
+    }
+
+    .links{
+        li{
+            &:hover{
+                background-color: #EAECEE;
+                color: #17202A;
+                padding: 1.5rem 2rem;
+                transition: all .25s;
+            }
+            display: inline-block;
+            list-style: none;
+            padding: 1.5rem 1rem;
+            transition: all .25s;
+        }
+    }
+}
