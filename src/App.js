@@ -1,12 +1,20 @@
 import './App.css';
 
-import { Fragment } from 'react';
+import Home from './routes/Home/Home.component';
+import Signin from './routes/Sign-in/Signin.component';
+import Navigation from './components/navigation/navigation.component';
 
-const App = () =>{
+import { Route, Routes } from 'react-router-dom';
+
+const App = () => {
   return (
-  <Fragment>
-    Test
-  </Fragment>
+    <Routes>
+      <Route path='/' element={<Navigation/>}>
+        <Route index element={<Home />} />
+        <Route path='Sign-In' element={<Signin/>}/>
+      </Route>
+      
+    </Routes>
   )
 };
 
