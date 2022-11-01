@@ -7,6 +7,14 @@
 
     .Logo {
         align-self: center;
+        transition: all .25s;
+        padding: 0px 1rem;
+
+        &:hover {
+            font-size: large;
+            letter-spacing: 3px;
+            transition: all .25s;
+        }
     }
 
     .links {
@@ -16,6 +24,7 @@
                 color: #34495E;
                 padding: 1.5rem 2rem;
                 transition: all .25s;
+                letter-spacing: 3px;
             }
 
             display: inline-block;
