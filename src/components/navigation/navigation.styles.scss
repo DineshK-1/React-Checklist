@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #17202A;
+    background-color: #34495E;
 
     .Logo {
         align-self: center;
@@ -13,7 +13,7 @@
         li {
             &:hover {
                 background-color: #EAECEE;
-                color: #17202A;
+                color: #34495E;
                 padding: 1.5rem 2rem;
                 transition: all .25s;
             }
