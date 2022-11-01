@@ -1,0 +1,32 @@
+.loginForm {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #34495E;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    padding: 2rem;
+
+    input {
+        margin: 1rem 0px;
+        display: block;
+        padding: .3rem 1rem;
+        border: 2px solid #EAECEE;
+
+        &:focus {
+            outline: 2px inset #ABB2B9;
+            border: 2px solid #EAECEE;
+        }
+    }
+    .Google{
+        align-self: stretch !important;
+    }
+    button{
+        align-self: center;
+        padding: 1rem 2rem;
+    }
+}
