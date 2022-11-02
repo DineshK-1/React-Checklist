@@ -58,21 +58,33 @@
         }
     }
     @keyframes textanim {
-        0%{
+        0% {
             letter-spacing: normal;
         }
-        50%{
+
+        50% {
             letter-spacing: 1px;
         }
-        100%{
+
+        100% {
             letter-spacing: normal;
         }
     }
 
-    span{
+    span {
         margin: 1rem 0;
-        .animate{
+
+        .animate {
             animation: textanim 1s infinite;
         }
+    }
+
+    .alerts {
+        border-radius: 10px;
+        width: 100%;
+        padding: 1rem;
+        border: #7B241C solid 2px;
+        background-color: #E74C3C;
+        margin-bottom: .5rem;
     }
 }

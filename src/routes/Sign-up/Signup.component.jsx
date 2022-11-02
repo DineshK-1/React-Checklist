@@ -1,9 +1,11 @@
 import "./Signup.styles.scss"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { createUser, signInwithGooglePopup, createUserDocumentFromAuth, createUserDocument } from "../../utils/firebase/firebase.utils"
 import { Link } from "react-router-dom";
+
+import Alerts from "../../components/Alerts/alerts.component";
 
 const logGoogleUser = async () => {
     const { user } = await signInwithGooglePopup();
@@ -17,8 +19,30 @@ const defaultFormFields = {
     confirmPassword: "",
 }
 
+//Error Fields
+const defaultErrors = []
+
 const Signup = () => {
+
+    const [errorAlerts, setErrorAlerts] = useState(defaultErrors);
     const [formFields, setFormFields] = useState(defaultFormFields);
+
+    //Error Handling
+    //Reset Error
+    const resetErrorAlerts = () => {
+        setErrorAlerts(defaultErrors);
+    }
+
+    //Update List
+    const addErrorString = (errorString) => {
+        const temp = [...errorAlerts];
+        temp.push(errorString);
+        setErrorAlerts(temp);
+    }
+
+    const addError = (error) => {
+        addErrorString(error.code);
+    }
 
     //Reset Data in Fields
     const resetFormFields = () => {
@@ -26,21 +50,22 @@ const Signup = () => {
     }
 
     //Handling Submit Form
-    const handleSubmit = async (event) =>{
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        if(formFields.password != formFields.confirmPassword){
-            alert("Passwords don't match!");
+        resetErrorAlerts();
+        if (formFields.password != formFields.confirmPassword) {
+            addErrorString("Passwords don't match");
             return;
         }
 
-        try{
+        try {
             const response = await createUser(formFields.email, formFields.password);
             const ref = await createUserDocument(response, formFields.display);
             resetFormFields();
-        }catch(error){
-            console.log(error);
+        } catch (error) {
+            addError(error);
         }
-        
+
     }
 
     //Sync Input data with Form Hook
@@ -50,11 +75,10 @@ const Signup = () => {
 
     return (
         <div className="Signup">
-            <div className="alerts">
-
-            </div>
             <div className="loginForm">
                 <h3>Sign Up</h3>
+                <Alerts errors = {errorAlerts}/>                
+
                 <button onClick={logGoogleUser} className="Google">Sign up with Google</button>
                 <form onSubmit={handleSubmit}>
                     <input type="text" placeholder='Display Name' name="display" onChange={handleChange} value={formFields.display} required />
