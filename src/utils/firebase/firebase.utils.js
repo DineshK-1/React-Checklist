@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -58,14 +58,17 @@ export const createUser = async (email, pass) => createUserWithEmailAndPassword(
 export const createUserDocument = async (userAuth,displayName) => {
   const {user} = userAuth;
   const {email, password} = user;
-  const createdAt = new Date();
+  const createdAt = new Date();const photoURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
   const userDocRef = doc(db, "users", user.uid);
   
   try{
     await setDoc(userDocRef,{
-      displayName, email, createdAt
+      displayName, photoURL, email, createdAt
     })
   }catch(error){
     console.log(error);
   }
 }
+
+//Sign in Methods
+export const signInwithAuth = async (email,password) => signInWithEmailAndPassword(auth,email,password);
