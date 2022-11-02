@@ -53,4 +53,19 @@ export const createUserDocumentFromAuth = async (UserAuth) => {
   return userDocRef;
 }
 
-export const createUser = (email, pass) => createUserWithEmailAndPassword(auth, email, pass);
+export const createUser = async (email, pass) => createUserWithEmailAndPassword(auth, email, pass);
+
+export const createUserDocument = async (userAuth,displayName) => {
+  const {user} = userAuth;
+  const {email, password} = user;
+  const createdAt = new Date();
+  const userDocRef = doc(db, "users", user.uid);
+  
+  try{
+    await setDoc(userDocRef,{
+      displayName, email, createdAt
+    })
+  }catch(error){
+    console.log(error);
+  }
+}

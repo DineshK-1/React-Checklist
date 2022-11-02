@@ -1,0 +1,78 @@
+.loginForm {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #34495E;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+
+    h3{
+        margin-bottom: 10px !important;
+        margin: 0;
+    }
+
+    input {
+        margin: 1.25rem 0px;
+        display: block;
+        padding: .5rem 1.5rem;
+        border: 2px solid #AEB6BF;
+        border-radius: 5px;
+        line-height: 2em;
+        width: 225px;
+
+        transition: all .25s;
+
+        &:focus {
+            transition: all .25s;
+            outline: none;
+            border: 2px solid #1B2631;
+        }
+    }
+
+    .Google {
+        align-self: stretch !important;
+    }
+
+    button {
+        display: block;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        border: 2px solid #1B2631;
+        font-weight: bold;
+        background-color: #1B2631;
+        color: #AEB6BF;
+
+        transition: all .25s;
+        &:hover {
+            transition: all .25s;
+            letter-spacing: 2px;
+            background-color: #fff;
+            color: #1B2631;
+        }
+    }
+    @keyframes textanim {
+        0%{
+            letter-spacing: normal;
+        }
+        50%{
+            letter-spacing: 1px;
+        }
+        100%{
+            letter-spacing: normal;
+        }
+    }
+
+    span{
+        margin: 1rem 0;
+        .animate{
+            animation: textanim 1s infinite;
+        }
+    }
+}
