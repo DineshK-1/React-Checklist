@@ -2,8 +2,10 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import { useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAY1E6F9uNzRrQd6YUsW3g0YSZVlLkct74",
@@ -55,20 +57,32 @@ export const createUserDocumentFromAuth = async (UserAuth) => {
 
 export const createUser = async (email, pass) => createUserWithEmailAndPassword(auth, email, pass);
 
-export const createUserDocument = async (userAuth,displayName) => {
-  const {user} = userAuth;
-  const {email, password} = user;
-  const createdAt = new Date();const photoURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+export const createUserDocument = async (userAuth, displayName) => {
+  const { user } = userAuth;
+  const { email } = user;
+  const createdAt = new Date(); const photoURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
   const userDocRef = doc(db, "users", user.uid);
-  
-  try{
-    await setDoc(userDocRef,{
+
+  try {
+    await setDoc(userDocRef, {
       displayName, photoURL, email, createdAt
     })
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
 }
 
 //Sign in Methods
-export const signInwithAuth = async (email,password) => signInWithEmailAndPassword(auth,email,password);
+export const signInwithAuth = async (email, password) => signInWithEmailAndPassword(auth, email, password);
+
+export const GetDatabaseUserProfile = async () => {
+  const { user } = useContext(UserContext)
+  if (user != null) {
+    return await getDoc(doc(db, "users", user.uid))
+  }
+  else {
+    return;
+  }
+}
+
+export const signOutUser = async () => await signOut(auth);
