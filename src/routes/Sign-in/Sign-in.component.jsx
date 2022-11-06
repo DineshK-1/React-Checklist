@@ -2,24 +2,43 @@ import { Link } from "react-router-dom";
 
 import Alerts from "../../components/Alerts/alerts.component";
 
-import { useState } from "react";
+import { useState, useRef, useContext } from "react";
 import { signInwithAuth, signInwithGooglePopup } from "../../utils/firebase/firebase.utils";
 
-const logGoogleUser = async () => {
-    return await signInwithGooglePopup();
-}
-
-const defaultFormFields = {
-    email: "",
-    password: "",
-}
+//User contexts
+import { UserContext } from "../../contexts/user.context";
 
 //Error Fields
 const defaultErrors = []
 
 const Login = () => {
+    const {setCurrentUser} = useContext(UserContext)
+
     const [errorAlerts, setErrorAlerts] = useState(defaultErrors);
-    const [formFields, setFormFields] = useState(defaultFormFields);
+
+    const emailRef = useRef();
+    const passRef = useRef();
+
+    //Login Using Google
+    const logGoogleUser = async () => {
+        const response = await signInwithGooglePopup();
+        setCurrentUser(response.user);
+        resetErrorAlerts();
+    }
+
+    //Login Using Email Password
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        resetErrorAlerts();
+        console.log(emailRef.current.value, passRef.current.value);
+        try {
+            const response = await signInwithAuth(emailRef.current.value, passRef.current.value);
+            setCurrentUser(response.user);
+            resetFormFields();
+        } catch (error) {
+            addError(error);
+        }
+    }
 
     //Error Handling
     //Reset Error
@@ -40,25 +59,8 @@ const Login = () => {
 
     //Reset Data in Fields
     const resetFormFields = () => {
-        setFormFields(defaultFormFields);
-    }
-
-    //Handling Submit Form
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        resetErrorAlerts();
-        try {
-            const response = await signInwithAuth(formFields.email, formFields.password);
-            resetFormFields();
-        } catch (error) {
-            addError(error);
-        }
-
-    }
-
-    //Sync Input data with Form Hook
-    const handleChange = (event) => {
-        setFormFields({ ...formFields, [event.target.name]: event.target.value });
+        emailRef.current.value = "";
+        passRef.current.value = "";
     }
 
     return (
@@ -69,8 +71,8 @@ const Login = () => {
 
                 <button onClick={logGoogleUser} className="Google">Sign in with Google</button>
                 <form onSubmit={handleSubmit}>
-                    <input type="email" placeholder='Email Address' name="email" onChange={handleChange} value={formFields.email} required />
-                    <input type="password" placeholder='Password' name="password" onChange={handleChange} value={formFields.password} required />
+                    <input type="email" placeholder='Email Address' name="email" ref={emailRef} required />
+                    <input type="password" placeholder='Password' name="password" ref={passRef} required />
                     <button className="Submit">Login</button>
                 </form>
                 <span>Don't Have an Account? <Link className="animate" to="/Sign-up">Sign up</Link></span>
