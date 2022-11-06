@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 
 import Alerts from "../../components/Alerts/alerts.component";
 
-import { useState, useRef, useContext } from "react";
+import { useState, useRef } from "react";
 import { signInwithAuth, signInwithGooglePopup } from "../../utils/firebase/firebase.utils";
-
-//User contexts
-import { UserContext } from "../../contexts/user.context";
 
 //Error Fields
 const defaultErrors = []
 
 const Login = () => {
-    const {setCurrentUser} = useContext(UserContext)
 
     const [errorAlerts, setErrorAlerts] = useState(defaultErrors);
 
@@ -21,8 +17,7 @@ const Login = () => {
 
     //Login Using Google
     const logGoogleUser = async () => {
-        const response = await signInwithGooglePopup();
-        setCurrentUser(response.user);
+        await signInwithGooglePopup();
         resetErrorAlerts();
     }
 
@@ -30,11 +25,10 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         resetErrorAlerts();
-        console.log(emailRef.current.value, passRef.current.value);
         try {
-            const response = await signInwithAuth(emailRef.current.value, passRef.current.value);
-            setCurrentUser(response.user);
+            await signInwithAuth(emailRef.current.value, passRef.current.value);
             resetFormFields();
+            resetErrorAlerts();
         } catch (error) {
             addError(error);
         }

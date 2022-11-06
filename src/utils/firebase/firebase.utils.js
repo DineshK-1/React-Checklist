@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
@@ -76,13 +76,13 @@ export const createUserDocument = async (userAuth, displayName) => {
 export const signInwithAuth = async (email, password) => signInWithEmailAndPassword(auth, email, password);
 
 export const GetDatabaseUserProfile = async () => {
-  const { user } = useContext(UserContext)
-  if (user != null) {
+  const { user, isLoggedIn } = useContext(UserContext)
+  if (isLoggedIn) {
     return await getDoc(doc(db, "users", user.uid))
   }
-  else {
-    return;
-  }
+  return null;
 }
 
 export const signOutUser = async () => await signOut(auth);
+
+export const OnAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

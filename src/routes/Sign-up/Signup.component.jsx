@@ -1,25 +1,19 @@
 import "./Signup.styles.scss"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { createUser, signInwithGooglePopup, createUserDocumentFromAuth, createUserDocument } from "../../utils/firebase/firebase.utils"
 import { Link } from "react-router-dom";
 
 import Alerts from "../../components/Alerts/alerts.component";
 
-const logGoogleUser = async () => {
-    const { user } = await signInwithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-}
-
+//Default Fields
 const defaultFormFields = {
     display: "",
     email: "",
     password: "",
     confirmPassword: "",
 }
-
-//Error Fields
 const defaultErrors = []
 
 const Signup = () => {
@@ -49,18 +43,24 @@ const Signup = () => {
         setFormFields(defaultFormFields);
     }
 
-    //Handling Submit Form
+    //Signup with Google
+    const logGoogleUser = async () => {
+        const response = await signInwithGooglePopup();
+        return await createUserDocumentFromAuth(response.user);
+    }
+
+    //Signup with Email and Pass
     const handleSubmit = async (event) => {
         event.preventDefault();
         resetErrorAlerts();
-        if (formFields.password != formFields.confirmPassword) {
+        if (formFields.password !== formFields.confirmPassword) {
             addErrorString("Passwords don't match");
             return;
         }
 
         try {
             const response = await createUser(formFields.email, formFields.password);
-            const ref = await createUserDocument(response, formFields.display);
+            await createUserDocument(response, formFields.display);
             resetFormFields();
         } catch (error) {
             addError(error);
@@ -77,7 +77,7 @@ const Signup = () => {
         <div className="Signup">
             <div className="loginForm">
                 <h3>Sign Up</h3>
-                <Alerts errors = {errorAlerts}/>                
+                <Alerts errors={errorAlerts} />
 
                 <button onClick={logGoogleUser} className="Google">Sign up with Google</button>
                 <form onSubmit={handleSubmit}>

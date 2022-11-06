@@ -3,17 +3,14 @@ import './navigation.styles.scss'
 import { Link, Outlet } from 'react-router-dom';
 import { Fragment, useContext } from 'react';
 
-import { UserContext } from '../../contexts/user.context';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
+import { UserContext } from '../../contexts/user.context';
 
 const Navigation = () => {
-    const { user, setCurrentUser, databaseUser } = useContext(UserContext);
+    const { user } = useContext(UserContext)
 
-    console.log(databaseUser);
-    
-    const signOutHandler = async () => {
-        await signOutUser();
-        setCurrentUser(null);
+    const signOutHandler = () => {
+        signOutUser();
     }
 
     return (
