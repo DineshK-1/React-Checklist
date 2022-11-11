@@ -1,0 +1,52 @@
+.task{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px white solid;
+    justify-content: space-between;
+
+    .left{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    button{
+        padding: .5rem 1rem;
+        border-radius: 5px;
+        border: 0;
+        transition: all .25s;
+    }
+    .task-done{
+        background-color: #226C3B;
+    }
+    .task-pending{
+        background-color: #FF5C5C;
+    }
+
+    .name{
+        margin-left: 8px;
+    }
+    .date{
+        background-color: #226C3B;
+        margin-left: 10px;
+        padding: 6px;
+        border-radius: 5px;
+        font-size: 12px;
+        transition: all .25s;
+        border: 2px solid #96DEAE;
+        &:hover{
+            background-color: white;
+            color: #226C3B;
+            letter-spacing: 0.5px;
+            transition: all .25s;
+        }
+    }
+    .due{
+        background-color: #FF5C5C;
+        border: 2px solid #750000;
+        &:hover{
+            background-color: white;
+            color: #750000;
+        }
+    }
+}
