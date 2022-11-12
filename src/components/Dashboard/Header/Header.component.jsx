@@ -1,5 +1,5 @@
 const Header = (props) => {
-    return (<div className="header">{props.day}<span className="material-symbols-outlined">add</span></div>)
+    return (<div className="header">{props.day}</div>)
 }
 
 export default Header;

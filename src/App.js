@@ -8,13 +8,15 @@ import Login from './routes/Sign-in/Sign-in.component';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './contexts/user.context';
+import Dashboard from './components/Dashboard/Dashboard.component';
 
 const App = () => {
   const { isLoggedIn } = useContext(UserContext);
   return (
     <Routes>
       <Route path='/' element={<Navigation />}>
-        <Route index element={<Home />} />
+        <Route path='Dashboard' element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}/>
+        <Route index element={isLoggedIn ? <Navigate to="Dashboard" /> : <Home />} />
         <Route path='Sign-Up' element={isLoggedIn ? <Navigate to="/" /> : <Signup />} />
         <Route path='Login' element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
       </Route>

@@ -1,5 +1,5 @@
 const Alerts = (props) => {
-    if (props.errors.length == 0) {
+    if (props.errors.length === 0) {
         return;
     } else {
         return (<div className="alerts">

@@ -8,3 +8,14 @@
         justify-content: space-between;
     }
 }
+
+button.Bottom{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    padding: 10px;
+    span{
+        vertical-align: middle;
+    }
+}

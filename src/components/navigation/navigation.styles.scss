@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #34495E;
+    background-color: var(--nav-color);
 
     .Logo {
         align-self: center;
@@ -20,8 +20,8 @@
     .links {
         li {
             &:hover {
-                background-color: #EAECEE;
-                color: #34495E;
+                background-color: var(--nav-hover-color);
+                color: var(--nav-color);
                 padding: 1.5rem 2rem;
                 transition: all .25s;
                 letter-spacing: 3px;
