@@ -1,9 +1,12 @@
 import "./Date.styles.scss"
 
-const Date = ({date, type}) => {
-    if(type === "green") return <div className="date green">{date}</div>
-    if(type === "due") return <div className="date due">{date}</div>
+const DateComp = ({date, type}) => {
+    const convertedDate = new Date(0);
+    convertedDate.setUTCSeconds(date);
+    
+    if(type === "green") return <div className="date green">{convertedDate.toDateString()}</div>
+    if(type === "due") return <div className="date due">{convertedDate.toDateString()}</div>
     return null
 }
 
-export default Date;
+export default DateComp;

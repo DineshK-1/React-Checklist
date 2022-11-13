@@ -6,7 +6,7 @@ import { CreateTaskInDB } from "../../../../../utils/firebase/firebase.utils";
 import { useContext } from "react";
 import { AlertsContext } from "../../../../../contexts/Alerts.context";
 
-const TaskPopup = ({ open, onClose }) => {
+const TaskPopup = ({ open, onClose, reRenderFunction }) => {
 
     const nameRef = useRef();
     const descriptionRef = useRef();
@@ -35,7 +35,7 @@ const TaskPopup = ({ open, onClose }) => {
 
                 <div className="description">Description:</div>
                 <textarea name="" rows="5" placeholder="Description..." ref={descriptionRef} required></textarea>
-                <button className="Submit" onClick={() => { CreateTaskInDB(nameRef, descriptionRef, date); onClose(); AddAlert("success", "Task Added Successfully"); }}>Add Task</button>
+                <button className="Submit" onClick={() => { CreateTaskInDB(nameRef, descriptionRef, date); onClose(); AddAlert("success", "Task Added Successfully"); reRenderFunction()}}>Add Task</button>
             </div>
         </Fragment>
     )

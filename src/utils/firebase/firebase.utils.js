@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
-import { getFirestore, doc, getDoc, setDoc, collection, addDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, setDoc, collection, addDoc, query, where, getDocs, deleteDoc } from 'firebase/firestore'
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { AlertsContext } from "../../contexts/Alerts.context";
@@ -104,4 +104,19 @@ export const CreateTaskInDB = async (name, desc, date) => {
   } catch (e) {
     console.error("Error adding document: ", e);
   }
+}
+
+export const FetchTaskInDB = async () => {
+  try {
+    const q = query(collection(db, "tasks"), where("userID", "==", auth.currentUser.uid));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  } catch (e) {
+    console.error("Error getting document: ", e);
+  }
+}
+
+export const DeleteTaskInDB = async (ID) => {
+  const resp = await deleteDoc(doc(db, "tasks", ID));
+  console.log(resp)
 }
