@@ -3,9 +3,10 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, setDoc, collection, addDoc } from 'firebase/firestore'
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
+import { AlertsContext } from "../../contexts/Alerts.context";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAY1E6F9uNzRrQd6YUsW3g0YSZVlLkct74",
@@ -27,7 +28,7 @@ provider.setCustomParameters({
   prompt: "select_account"
 })
 
-
+//Authentication Section
 export const auth = getAuth();
 export const signInwithGooglePopup = () => signInWithPopup(auth, provider);
 
@@ -86,3 +87,21 @@ export const GetDatabaseUserProfile = async () => {
 export const signOutUser = async () => await signOut(auth);
 
 export const OnAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+//Tasks Section
+
+export const CreateTaskInDB = async (name, desc, date) => {
+  try {
+    const docRef = await addDoc(collection(db, "tasks"), {
+      name: name.current.value,
+      description: desc.current.value,
+      createdDate: new Date(),
+      dueDate: date,
+      userID: auth.currentUser.uid,
+
+      taskDone: false,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
