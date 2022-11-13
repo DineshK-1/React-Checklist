@@ -6,15 +6,20 @@ import reportWebVitals from './reportWebVitals';
 
 import { UserProvider } from './contexts/user.context';
 import { BrowserRouter } from 'react-router-dom';
+import { AlertsProvider } from './contexts/Alerts.context';
+import PopupAlert from './components/Alerts/PopupAlert.component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </UserProvider>
+    <AlertsProvider>
+      <UserProvider>
+        <BrowserRouter>
+          <PopupAlert />
+          <App />
+        </BrowserRouter>
+      </UserProvider>
+    </AlertsProvider>
   </React.StrictMode>
 );
 

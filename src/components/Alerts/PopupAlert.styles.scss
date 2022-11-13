@@ -1,0 +1,21 @@
+.popup-alert {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: var(--nav-color);
+
+    padding: 20px;
+    border-radius: 8px;
+    animation: fade .25s ease-in;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 100;
+    }
+}

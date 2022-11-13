@@ -8,10 +8,9 @@ const Dashboard = () => {
     const [createTask, setCreateTask] = useState(false)
 
 
-
     return (
         <Fragment>
-            <CreateTask open={createTask} onClose={()=>setCreateTask(false)}></CreateTask>
+            <CreateTask open={createTask} onClose={() => setCreateTask(false)}></CreateTask>
             <div className="my-tasks">
                 <h2>My Tasks</h2>
                 <div className="tasks-wrapper">
