@@ -1,26 +1,58 @@
 .task {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     border-bottom: 1px white solid;
-    justify-content: space-between;
 
-    .left {
+    .top {
         display: flex;
-        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
+
+        .left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            input[type="checkbox"] {
+                height: 15px;
+                width: 15px;
+
+                &:checked {
+                    accent-color: var(--nav-hover-color);
+                }
+            }
+        }
+
+        .name {
+            margin-left: 8px;
+        }
+
+        .right {
+            button {
+                padding: 5px 10px;
+                margin: 0 2px;
+                background: var(--background-color);
+
+                &:hover {
+                    margin: 0 8px;
+                    background: var(--nav-hover-color);
+                    border-radius: 8px;
+                }
+            }
+        }
     }
 
-    .name {
-        margin-left: 8px;
-    }
-    .right{
-        button{
-            padding: 5px 10px;
-            background: var(--background-color);
-            &:hover{
-                background: var(--nav-hover-color);
-                border-radius: 8px;
-            }
+    .desc {
+        display: none;
+        padding-bottom: 10px;
+        font-size: small;
+        max-height: 0;
+        transition: max-height 5s cubic-bezier(0, 1, 0, 1);
+
+        &.checked {
+            display: block;
+            max-height: max-content;
         }
     }
 }

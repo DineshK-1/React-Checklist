@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
-import { getFirestore, doc, getDoc, setDoc, collection, addDoc, query, where, getDocs, deleteDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, setDoc, collection, addDoc, query, where, getDocs, deleteDoc, orderBy, updateDoc } from 'firebase/firestore'
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { AlertsContext } from "../../contexts/Alerts.context";
@@ -108,7 +108,7 @@ export const CreateTaskInDB = async (name, desc, date) => {
 
 export const FetchTaskInDB = async () => {
   try {
-    const q = query(collection(db, "tasks"), where("userID", "==", auth.currentUser.uid));
+    const q = query(collection(db, "tasks"), where("userID", "==", auth.currentUser.uid), orderBy("createdDate"));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   } catch (e) {
@@ -117,6 +117,9 @@ export const FetchTaskInDB = async () => {
 }
 
 export const DeleteTaskInDB = async (ID) => {
-  const resp = await deleteDoc(doc(db, "tasks", ID));
-  console.log(resp)
+  return await deleteDoc(doc(db, "tasks", ID));
+}
+
+export const SetTaskStateInDB = async (ID, check) => {
+  return await updateDoc(doc(db, "tasks", ID), { taskDone: !check })
 }

@@ -26,21 +26,21 @@ const Dashboard = () => {
 
     return (
         <Fragment>
-            <CreateTask open={createTask} reRenderFunction={ReRender} onClose={() => setCreateTask(false)}/>
+            <CreateTask open={createTask} reRenderFunction={ReRender} onClose={() => setCreateTask(false)} />
             <div className="my-tasks">
                 <h2>My Tasks</h2>
 
                 <div className="tasks-wrapper">
-                    <Header day="Today" />
+                    <Header day="Pending Tasks" />
                     {tasks.map(obj => {
                         const convertedDate = new Date(0);
                         convertedDate.setUTCSeconds(+obj.dueDate)
-                        return <Task key={obj.id} name={obj.name} createdDate={obj.createdDate} dueDate={obj.dueDate} ID={obj.id} reRenderFunction={ReRender} />
+                        return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
                     })}
                 </div>
             </div>
 
-            <button className='Bottom custom-button' onClick={() => {setCreateTask(true)}}><span className="material-symbols-outlined image">add</span><span className="xdxd">Create Task</span></button>
+            <button className='Bottom custom-button' onClick={() => { setCreateTask(true) }}><span className="material-symbols-outlined image">add</span><span className="xdxd">Create Task</span></button>
         </Fragment>
     )
 }
