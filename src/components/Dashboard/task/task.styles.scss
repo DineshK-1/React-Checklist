@@ -15,8 +15,8 @@
             align-items: center;
 
             input[type="checkbox"] {
-                height: 15px;
-                width: 15px;
+                height: 16px;
+                width: 16px;
 
                 &:checked {
                     accent-color: var(--nav-hover-color);
@@ -26,16 +26,27 @@
 
         .name {
             margin-left: 8px;
+
+            &.done {
+                color: var(--sec-color);
+                text-decoration: line-through;
+            }
         }
 
         .right {
+            display: flex;
+
+            .dates {
+                display: flex;
+            }
+
             button {
-                padding: 5px 10px;
+                padding: 5px 8px;
                 margin: 0 2px;
                 background: var(--background-color);
 
                 &:hover {
-                    margin: 0 8px;
+                    padding: 5px 16px;
                     background: var(--nav-hover-color);
                     border-radius: 8px;
                 }

@@ -30,13 +30,28 @@ const Dashboard = () => {
             <div className="my-tasks">
                 <h2>My Tasks</h2>
 
+                {tasks.length == 0 ? <div className="empty">No tasks were created!</div> : null}
                 <div className="tasks-wrapper">
                     <Header day="Pending Tasks" />
-                    {tasks.map(obj => {
-                        const convertedDate = new Date(0);
-                        convertedDate.setUTCSeconds(+obj.dueDate)
-                        return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
-                    })}
+                    <div className="task-list">
+                        {tasks.map(obj => {
+                            if (!obj.taskDone) {
+                                return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
+                            }
+                        })}
+                    </div>
+                </div>
+
+                <div className="tasks-wrapper">
+                    <Header day="Completed Tasks" />
+                    
+                    <div className="task-list">
+                        {tasks.map(obj => {
+                            if (obj.taskDone) {
+                                return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
+                            }
+                        })}
+                    </div>
                 </div>
             </div>
 

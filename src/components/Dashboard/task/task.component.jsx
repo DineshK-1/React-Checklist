@@ -14,8 +14,10 @@ const Task = (props) => {
     const { AddAlert } = useContext(AlertsContext)
 
     const HandleCheck = () => {
-        SetTaskStateInDB(props.id, check)
-        setCheck(!check);
+        SetTaskStateInDB(props.id, check).then(() => {
+            setCheck(!check);
+            props.reRenderFunction();
+        })
     }
 
     const [taskPopupState, setTaskPopupState] = useState(false);
@@ -27,17 +29,21 @@ const Task = (props) => {
                 <div className="top">
                     <div className="left">
                         <input type="checkbox" checked={check} onChange={HandleCheck} />
-                        <h4 className='name'>{props.name}</h4>
-                        <DateComp date={props.createdDate.seconds} type={"green"} />
-                        <DateComp date={props.dueDate.seconds} type={"due"} />
+                        <h4 className={check ? 'name done' : 'name'}>{props.name}</h4>
                     </div>
                     <div className="right">
-                        <button className='custom-button' onClick={() => setDesc(!desc)}><span className="material-symbols-outlined md-18">expand_more</span></button>
-                        <button className='custom-button' onClick={() => setTaskPopupState(true)}><span className="material-symbols-outlined md-18">edit</span></button>
-                        <button className='custom-button' onClick={() => { DeleteTaskInDB(props.ID); props.reRenderFunction(); AddAlert("success", "Task Deleted Successfully"); }}><span className="material-symbols-outlined md-18">delete</span></button>
+                        <div className="dates">
+                            <DateComp date={props.createdDate.seconds} type={"green"} />
+                            <DateComp date={props.dueDate.seconds} type={"due"} />
+                        </div>
+                        <div className="buttons">
+                            <button className='custom-button' onClick={() => setDesc(!desc)}><span className="material-symbols-outlined md-18">expand_more</span></button>
+                            <button className='custom-button' onClick={() => setTaskPopupState(true)}><span className="material-symbols-outlined md-18">edit</span></button>
+                            <button className='custom-button' onClick={() => { DeleteTaskInDB(props.id).then(()=>{props.reRenderFunction(); AddAlert("success", "Task Deleted Successfully");}) }}><span className="material-symbols-outlined md-18">delete</span></button>
+                        </div>
                     </div>
                 </div>
-                <div className="bottom">
+                <div className="description">
                     <div className={desc ? "desc checked" : "desc"}>
                         {props.description}
                     </div>
