@@ -58,11 +58,15 @@
         display: none;
         padding-bottom: 10px;
         font-size: small;
+        margin: 0;
         max-height: 0;
-        transition: max-height 5s cubic-bezier(0, 1, 0, 1);
+        transform: scale(0);
+        transition: transform .5s cubic-bezier(0, 1, 0, 1);
+        overflow-wrap: break-word;
 
         &.checked {
             display: block;
+            transform: scale(1);
             max-height: max-content;
         }
     }

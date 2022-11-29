@@ -19,7 +19,7 @@ const App = () => {
         <Route path='Dashboard' element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}>
           <Route path='Tasks' element={<TaskPage />}/>
         </Route>
-        <Route index element={isLoggedIn ? <Navigate to="Dashboard" /> : <Home />} />
+        <Route index element={isLoggedIn ? <Navigate to="Dashboard/Tasks" /> : <Home />} />
         <Route path='Sign-Up' element={isLoggedIn ? <Navigate to="/" /> : <Signup />} />
         <Route path='Login' element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
       </Route>

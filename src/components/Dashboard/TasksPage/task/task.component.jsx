@@ -3,9 +3,9 @@ import './task.styles.scss'
 import DateComp from './Date/Date.component';
 
 import TaskPopup from './Popups/CreateTaskPopup/TaskPopup.component';
-import { DeleteTaskInDB, SetTaskStateInDB } from '../../../utils/firebase/firebase.utils';
+import { DeleteTaskInDB, SetTaskStateInDB } from '../../../../utils/firebase/firebase.utils';
 import { useContext } from 'react';
-import { AlertsContext } from '../../../contexts/Alerts.context';
+import { AlertsContext } from '../../../../contexts/Alerts.context';
 
 const Task = (props) => {
     const [desc, setDesc] = useState(false);

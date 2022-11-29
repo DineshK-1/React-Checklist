@@ -6,7 +6,6 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPas
 import { getFirestore, doc, getDoc, setDoc, collection, addDoc, query, where, getDocs, deleteDoc, orderBy, updateDoc } from 'firebase/firestore'
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
-import { AlertsContext } from "../../contexts/Alerts.context";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAY1E6F9uNzRrQd6YUsW3g0YSZVlLkct74",
