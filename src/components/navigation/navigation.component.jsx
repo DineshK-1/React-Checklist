@@ -5,6 +5,7 @@ import { Fragment, useContext } from 'react';
 
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 import { UserContext } from '../../contexts/user.context';
+import Sidebar from '../Sidebar/Sidebar.component';
 
 const Navigation = () => {
     const { user } = useContext(UserContext)
@@ -23,6 +24,7 @@ const Navigation = () => {
                     {user ? (<li onClick={signOutHandler}>Signout</li>) : (<Link to='/Login'><li>Sign-In</li></Link>)}
                 </div>
             </div>
+            <Sidebar/>
             <Outlet />
         </Fragment>
     )

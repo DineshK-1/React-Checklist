@@ -1,0 +1,17 @@
+.sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    background-color: var(--sec-color);
+    overflow-x: hidden;
+    padding-top: 20px;
+
+    a{
+        display: block;
+        padding: 15px;
+
+        &.active{
+            background-color: var(--nav-color);
+        }
+    }
+  }

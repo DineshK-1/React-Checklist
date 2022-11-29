@@ -9,13 +9,16 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './contexts/user.context';
 import Dashboard from './components/Dashboard/Dashboard.component';
+import TaskPage from './components/Dashboard/TasksPage/TasksPage.component';
 
 const App = () => {
   const { isLoggedIn } = useContext(UserContext);
   return (
     <Routes>
       <Route path='/' element={<Navigation />}>
-        <Route path='Dashboard' element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}/>
+        <Route path='Dashboard' element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}>
+          <Route path='Tasks' element={<TaskPage />}/>
+        </Route>
         <Route index element={isLoggedIn ? <Navigate to="Dashboard" /> : <Home />} />
         <Route path='Sign-Up' element={isLoggedIn ? <Navigate to="/" /> : <Signup />} />
         <Route path='Login' element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
