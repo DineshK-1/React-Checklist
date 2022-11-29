@@ -5,6 +5,7 @@ import { FetchTaskInDB } from "../../../utils/firebase/firebase.utils"
 import Header from "../Header/Header.component"
 import TaskPopup from "./task/Popups/CreateTaskPopup/TaskPopup.component"
 import Task from "./task/task.component"
+import { motion } from "framer-motion"
 
 const TaskPage = () => {
     const [createTask, setCreateTask] = useState(false)
@@ -55,7 +56,7 @@ const TaskPage = () => {
                     </div>
                 </Fragment>}
             </div>
-            <button className='Bottom custom-button' onClick={() => { setCreateTask(true) }}><span className="material-symbols-outlined image">add</span><span className="xdxd">Create Task</span></button>
+            <motion.button drag dragConstraints={{top:0,bottom:0,right:0,left:0}} className='Bottom custom-button' onClick={() => { setCreateTask(true) }}><span className="material-symbols-outlined image">add</span><span className="xdxd">Create Task</span></motion.button>
         </Fragment >
     )
 }

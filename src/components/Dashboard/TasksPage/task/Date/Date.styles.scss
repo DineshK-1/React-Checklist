@@ -20,11 +20,11 @@
     }
 
     &.green {
-        background-color: var(--sec-color);
+        background-color: var(--gray);
 
         &:hover {
             background-color: white;
-            color: var(--sec-color);
+            color: var(--gray);
         }
     }
 }
