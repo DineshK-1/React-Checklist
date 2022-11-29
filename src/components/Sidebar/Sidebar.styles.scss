@@ -6,12 +6,23 @@
     overflow-x: hidden;
     padding-top: 20px;
 
-    a{
+    a {
         display: block;
-        padding: 15px;
+        padding: 8px;
+        border-radius: 10px;
+        margin: 10px 0;
 
-        &.active{
+        &.active {
             background-color: var(--nav-color);
         }
     }
-  }
+
+    .List {
+        .elem {
+            padding: 6px;
+            padding-left: 12px;
+            margin-left: 20px;
+            font-size: small;
+        }
+    }
+}

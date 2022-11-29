@@ -42,13 +42,12 @@
 
             button {
                 padding: 5px 8px;
-                margin: 0 2px;
+                margin: 0 4px;
                 background: var(--background-color);
+                border-radius: 8px;
 
                 &:hover {
-                    padding: 5px 16px;
                     background: var(--nav-hover-color);
-                    border-radius: 8px;
                 }
             }
         }
