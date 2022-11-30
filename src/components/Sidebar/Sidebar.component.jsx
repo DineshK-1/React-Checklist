@@ -6,17 +6,17 @@ const Sidebar = () => {
         {
             id:1,
             Name:"Today",
-            L:"Dashboard/Tasks/Today",
+            L:"Dashboard/Tasks?q=Today",
         },
         {
             id:2,
             Name:"Tommorow",
-            L:"Dashboard/Tasks/Tommorow",
+            L:"Dashboard/Tasks?q=Tommorow",
         },
         {
             id:3,
             Name:"Upcoming",
-            L:"Dashboard/Tasks/Upcoming",
+            L:"Dashboard/Tasks?q=Upcoming",
         },
     ]
 
@@ -24,17 +24,7 @@ const Sidebar = () => {
         {
             id:1,
             Name:"Today",
-            L:"Dashboard/Habits/Today",
-        },
-        {
-            id:2,
-            Name:"Tommorow",
-            L:"Dashboard/Habits/Tommorow",
-        },
-        {
-            id:3,
-            Name:"Upcoming",
-            L:"Dashboard/Habits/Upcoming",
+            L:"Dashboard/Habits?q=Today",
         },
     ]
 
