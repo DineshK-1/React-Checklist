@@ -4,8 +4,7 @@
     margin: 0 auto;
     
     .header{
-        display:flex;
-        justify-content: space-between;
+        user-select: none;
     }
     .empty{
         background-color: var(--nav-color);
