@@ -40,7 +40,7 @@ const TaskPage = () => {
                 {tasks.length === 0 ? <div className="empty">No tasks were created!</div> : <AnimatePresence>
                     <div className="tasks-wrapper">
                         <div className="header"><motion.span animate={{ rotate: overdueTask ? 0 : -90 }} className="material-symbols-outlined" onClick={() => setOverdueTask(!overdueTask)}>expand_more</motion.span>Overdue Tasks</div>
-                        {overdueTask && <motion.div initial={{y:-50}} animate={{y:0}} exit={{y:-50}} className="task-list">
+                        {overdueTask && <motion.div initial={{ y: -50 }} animate={{ y: 0 }} exit={{ y: -50 }} className="task-list">
                             {tasks.map(obj => {
                                 const dueDate = new Date(obj.dueDate.seconds)
                                 const currentDate = new Date()
@@ -48,30 +48,31 @@ const TaskPage = () => {
                                 if (dueDate > currentDate && !obj.taskDone) {
                                     return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
                                 }
+                                return null;
                             })}
                         </motion.div>}
                     </div>
 
-
-
                     <div className="tasks-wrapper">
                         <div className="header"><motion.span animate={{ rotate: pendingTask ? 0 : -90 }} className="material-symbols-outlined" onClick={() => setPendingTask(!pendingTask)}>expand_more</motion.span>Pending Tasks</div>
-                        {pendingTask && <motion.div initial={{y:-50}} animate={{y:0}} exit={{y:-50}} className="task-list">
+                        {pendingTask && <motion.div initial={{ y: -50 }} animate={{ y: 0 }} exit={{ y: -50 }} className="task-list">
                             {tasks.map(obj => {
                                 if (!obj.taskDone) {
                                     return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
                                 }
+                                return null;
                             })}
                         </motion.div>}
                     </div>
 
                     <div className="tasks-wrapper">
                         <div className="header"><motion.span animate={{ rotate: completedTask ? 0 : -90 }} className="material-symbols-outlined" onClick={() => setCompletedTask(!completedTask)}>expand_more</motion.span>Completed Tasks</div>
-                        {completedTask && <motion.div initial={{y:-50}} animate={{y:0}} exit={{y:-50}} className="task-list">
+                        {completedTask && <motion.div initial={{ y: -50 }} animate={{ y: 0 }} exit={{ y: -50 }} className="task-list">
                             {tasks.map(obj => {
                                 if (obj.taskDone) {
                                     return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
                                 }
+                                return null;
                             })}
                         </motion.div>}
                     </div>

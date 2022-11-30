@@ -20,9 +20,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line
 const analytics = getAnalytics(app);
 
 const provider = new GoogleAuthProvider();
+// eslint-disable-next-line
 const perf = getPerformance(app);
 
 provider.setCustomParameters({
@@ -93,7 +95,7 @@ export const OnAuthStateChangedListener = (callback) => onAuthStateChanged(auth,
 
 export const CreateTaskInDB = async (name, desc, date) => {
   try {
-    const docRef = await addDoc(collection(db, "tasks"), {
+    await addDoc(collection(db, "tasks"), {
       name: name.current.value,
       description: desc.current.value,
       createdDate: new Date(),
