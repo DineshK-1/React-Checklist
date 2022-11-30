@@ -17,7 +17,7 @@ const Navigation = () => {
 
     return (
         <Fragment>
-            <motion.div initial={{opacity:0, x:200}} animate={{opacity:100, x:0}} className='navigation'>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 100 }} className='navigation'>
                 <Link to='/' className='Logo'>CheckList</Link>
                 <div className="links">
                     <li>Link1</li>
@@ -25,7 +25,7 @@ const Navigation = () => {
                     {user ? (<li onClick={signOutHandler}>Signout</li>) : (<Link to='/Login'><li>Sign-In</li></Link>)}
                 </div>
             </motion.div>
-            <Sidebar/>
+            {user && <Sidebar />}
             <Outlet />
         </Fragment>
     )
