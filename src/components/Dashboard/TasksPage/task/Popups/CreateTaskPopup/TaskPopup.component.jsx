@@ -38,9 +38,9 @@ const TaskPopup = ({ open, onClose, reRenderFunction }) => {
                         <div class="dropdown">
                             <button className="custom-button">Tags</button>
                             <div class="dropdown-options">
-                                <a href="#">School</a>
-                                <a href="#">work</a>
-                                <a href="#">Create Label</a>
+                                <span>School</span>
+                                <span>work</span>
+                                <span>Create Label</span>
                             </div>
                         </div>
                     </div>
