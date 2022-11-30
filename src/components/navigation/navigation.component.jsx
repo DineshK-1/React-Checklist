@@ -26,7 +26,9 @@ const Navigation = () => {
                 </div>
             </motion.div>
             {user && <Sidebar />}
-            <Outlet />
+            <div className="main-wrapper">
+                <Outlet />
+            </div>
         </Fragment>
     )
 }
