@@ -7,6 +7,8 @@ import Task from "./task/task.component"
 import { motion } from "framer-motion"
 
 const TaskPage = () => {
+    const currentDate = new Date()
+
     const [createTask, setCreateTask] = useState(false)
     const [updateTask, setUpdateTask] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
@@ -44,8 +46,7 @@ const TaskPage = () => {
                             {tasks.map(obj => {
                                 const dueDate = new Date(0)
                                 dueDate.setUTCSeconds(+obj.dueDate.seconds)
-                                const currentDate = new Date()
-                                console.log(dueDate)
+
                                 if (currentDate > dueDate && !obj.taskDone) {
                                     return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
                                 }
@@ -79,7 +80,7 @@ const TaskPage = () => {
                     </div>
                 </Fragment>}
             </div>
-            <motion.button drag dragConstraints={{ top: 0, bottom: 0, right: 0, left: 0 }} className='Bottom custom-button' onClick={() => { setCreateTask(true) }}><span className="material-symbols-outlined image">add</span><span className="xdxd">Create Task</span></motion.button>
+            <motion.button className='Bottom custom-button' onClick={() => { setCreateTask(true) }}><span className="material-symbols-outlined image">add</span><span className="xdxd">Create Task</span></motion.button>
         </Fragment >
     )
 }
