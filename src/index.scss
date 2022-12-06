@@ -68,7 +68,6 @@ a{
   border-radius: 10px;
 }
 
-
 button.Bottom{
   position: fixed;
   bottom: 0;
@@ -78,4 +77,13 @@ button.Bottom{
   span{
       vertical-align: middle;
   }
+}
+
+.popup-overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

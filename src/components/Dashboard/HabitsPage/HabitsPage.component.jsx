@@ -9,10 +9,13 @@ const HabitsPage = () => {
 
     return (
         <Fragment>
-            {createHabit &&
+            {createHabit && <Fragment>
+                <div className="popup-overlay"></div>
                 <div className="habits-popup">
+
                     
                 </div>
+            </Fragment>
             }
             <div className="habits-popup"></div>
             <div className="habits-wrapper">
