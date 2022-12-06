@@ -14,7 +14,7 @@ const TaskPage = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     const [pendingTask, setPendingTask] = useState(true)
-    const [overdueTask, setOverdueTask] = useState(false)
+    const [overdueTask, setOverdueTask] = useState(true)
     const [completedTask, setCompletedTask] = useState(false)
 
     const [tasks, setTasks] = useState([])
@@ -59,7 +59,10 @@ const TaskPage = () => {
                         <div className="header"><motion.span animate={{ rotate: pendingTask ? 0 : -90 }} className="material-symbols-outlined" onClick={() => setPendingTask(!pendingTask)}>expand_more</motion.span>Pending Tasks</div>
                         {pendingTask && <motion.div initial={{ y: -50 }} animate={{ y: 0 }} exit={{ y: -50 }} className="task-list">
                             {tasks.map(obj => {
-                                if (!obj.taskDone) {
+                                const dueDate = new Date(0)
+                                dueDate.setUTCSeconds(+obj.dueDate.seconds)
+
+                                if (!obj.taskDone && currentDate < dueDate) {
                                     return <Task key={obj.id} {...obj} reRenderFunction={ReRender} />
                                 }
                                 return null;
