@@ -20,7 +20,7 @@ const TaskPopup = ({ open, onClose, reRenderFunction }) => {
     if (!open) return null
 
     const HandleSubmit = () => {
-        CreateTaskInDB(nameRef, descriptionRef, date);
+        CreateTaskInDB(nameRef, descriptionRef, date, tags);
         onClose();
         clearTags();
         AddAlert("success", "Task Added Successfully");

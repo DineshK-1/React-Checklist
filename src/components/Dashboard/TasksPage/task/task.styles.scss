@@ -25,6 +25,25 @@
                     accent-color: var(--nav-hover-color);
                 }
             }
+
+            .tags {
+                display: inline-block;
+
+                .tag {
+                    display: inline-block;
+                    background-color: var(--gray);
+                    font-size: small;
+                    padding: 4px 16px;
+                    border-radius: 5px;
+                    transition: all .5s;
+                    margin: 0px 5px;
+
+                    &:hover {
+                        background-color: white;
+                        color: var(--gray);
+                    }
+                }
+            }
         }
 
         .name {

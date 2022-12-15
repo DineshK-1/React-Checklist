@@ -93,7 +93,7 @@ export const OnAuthStateChangedListener = (callback) => onAuthStateChanged(auth,
 
 //Tasks Section
 
-export const CreateTaskInDB = async (name, desc, date) => {
+export const CreateTaskInDB = async (name, desc, date, tags) => {
   try {
     await addDoc(collection(db, "tasks"), {
       name: name.current.value,
@@ -101,6 +101,7 @@ export const CreateTaskInDB = async (name, desc, date) => {
       createdDate: new Date(),
       dueDate: date,
       userID: auth.currentUser.uid,
+      tags:tags,
 
       taskDone: false,
     });
@@ -160,3 +161,4 @@ export const DeleteHabitInDB = async (ID) => {
 export const SetHabitInDB = async (ID, check) => {
   return await updateDoc(doc(db, "habits", ID), { habitDone: !check })
 }
+

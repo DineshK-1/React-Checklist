@@ -21,8 +21,8 @@ const Task = (props) => {
     }
 
     const upVariant = {
-        init:{y:100},
-        then:{y:0}
+        init: { y: 100 },
+        then: { y: 0 }
     }
 
     return (
@@ -36,7 +36,7 @@ const Task = (props) => {
                 }}
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y:50 }}
+                    exit={{ opacity: 0, y: 50 }}
                     whileTap={{ backgroundColor: "#4E4E50" }}
 
                     whileHover={{
@@ -48,6 +48,13 @@ const Task = (props) => {
                         <div className="left">
                             <input type="checkbox" checked={check} onChange={HandleCheck} />
                             <motion.h4 initial="init" animate="then" variants={upVariant} className={check ? 'name done' : 'name'}>{props.name}</motion.h4>
+                            <div className="tags">
+                                {props.tags &&
+                                    props.tags.map((tag) => {
+                                        return <div className="tag">{tag.name}</div>
+                                    })
+                                }
+                            </div>
                         </div>
                         <div className="right">
                             <div className="dates">
