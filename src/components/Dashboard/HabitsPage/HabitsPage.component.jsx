@@ -54,16 +54,6 @@ const HabitsPage = () => {
                                 <div className="title">Habit Name</div>
                                 <input className="text-input" ref={nameRef} type="text" placeholder="Habit Name..." required />
                             </div>
-                            <div className="tags">
-                                <div className="dropdown">
-                                    <button className="custom-button">Tags</button>
-                                    <div className="dropdown-options">
-                                        <span>School</span>
-                                        <span>work</span>
-                                        <span>Create Label</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div className="description">Description:</div>
