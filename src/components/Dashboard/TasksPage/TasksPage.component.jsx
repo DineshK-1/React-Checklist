@@ -84,7 +84,7 @@ const TaskPage = () => {
                 </Fragment>}
             </div>
             <motion.button className='Bottom custom-button' onClick={() => { setCreateTask(true) }}><span className="material-symbols-outlined image">add</span><span className="xdxd">Create Task</span></motion.button>
-        </Fragment >
+        </Fragment>
     )
 }
 

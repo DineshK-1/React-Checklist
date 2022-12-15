@@ -23,7 +23,6 @@ const TaskPopup = ({ open, onClose, reRenderFunction }) => {
         AddAlert("success", "Task Added Successfully");
         reRenderFunction();
     }
-
     return (
         <Fragment>
             <div className="popup-overlay"></div>
@@ -35,9 +34,9 @@ const TaskPopup = ({ open, onClose, reRenderFunction }) => {
                         <input className="text-input" ref={nameRef} type="text" placeholder="Task Name..." required />
                     </div>
                     <div className="tags">
-                        <div class="dropdown">
+                        <div className="dropdown">
                             <button className="custom-button">Tags</button>
-                            <div class="dropdown-options">
+                            <div className="dropdown-options">
                                 <span>School</span>
                                 <span>work</span>
                                 <span>Create Label</span>

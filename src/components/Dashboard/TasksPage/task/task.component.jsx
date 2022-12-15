@@ -2,7 +2,6 @@ import { Fragment, useState } from 'react'
 import './task.styles.scss'
 import DateComp from './Date/Date.component';
 
-import TaskPopup from './Popups/CreateTaskPopup/TaskPopup.component';
 import { DeleteTaskInDB, SetTaskStateInDB } from '../../../../utils/firebase/firebase.utils';
 import { useContext } from 'react';
 import { AlertsContext } from '../../../../contexts/Alerts.context';
@@ -26,11 +25,8 @@ const Task = (props) => {
         then:{y:0}
     }
 
-    const [taskPopupState, setTaskPopupState] = useState(false);
-
     return (
         <Fragment>
-            <TaskPopup open={taskPopupState} onClose={() => setTaskPopupState(false)} />
             <AnimatePresence>
                 <motion.div drag dragConstraints={{
                     top: 0,
@@ -60,7 +56,6 @@ const Task = (props) => {
                             </div>
                             <div className="buttons">
                                 <button className='custom-button' onClick={() => setDesc(!desc)}><span className="material-symbols-outlined md-18">expand_more</span></button>
-                                <button className='custom-button' onClick={() => setTaskPopupState(true)}><span className="material-symbols-outlined md-18">edit</span></button>
                                 <button className='custom-button' onClick={() => { DeleteTaskInDB(props.id).then(() => { props.reRenderFunction(); AddAlert("success", "Task Deleted Successfully"); }) }}><span className="material-symbols-outlined md-18">delete</span></button>
                             </div>
                         </div>
