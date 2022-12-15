@@ -126,3 +126,37 @@ export const DeleteTaskInDB = async (ID) => {
 export const SetTaskStateInDB = async (ID, check) => {
   return await updateDoc(doc(db, "tasks", ID), { taskDone: !check })
 }
+
+export const CreateHabitInDB = async (name, desc) => {
+  try {
+    await addDoc(collection(db, "habits"), {
+      name: name.current.value,
+      description: desc.current.value,
+      createdDate: new Date(),
+      userID: auth.currentUser.uid,
+
+      habitDone: false,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+export const FetchHabitInDB = async () => {
+  try {
+    const q = query(collection(db, "habits"), where("userID", "==", auth.currentUser.uid));
+    const querySnapshot = await getDocs(q);
+    console.log( querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  } catch (e) {
+    console.error("Error getting document: ", e);
+  }
+}
+
+export const DeleteHabitInDB = async (ID) => {
+  return await deleteDoc(doc(db, "habits", ID));
+}
+
+export const SetHabitInDB = async (ID, check) => {
+  return await updateDoc(doc(db, "habits", ID), { habitDone: !check })
+}
