@@ -6,7 +6,6 @@ const Sidebar = () => {
         <div className="sidebar">
             <Dbutton Name="Habits" L="Dashboard/Habits" State={false} />
             <Dbutton Name="Tasks" L="Dashboard/Tasks" State={false} />
-            <Dbutton Name="Lists" L="Dashboard/Tasks" State={false} />
         </div>
     )
 }
