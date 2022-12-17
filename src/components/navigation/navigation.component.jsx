@@ -20,8 +20,6 @@ const Navigation = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 100 }} className='navigation'>
                 <Link to='/' className='Logo'>CheckList</Link>
                 <div className="links">
-                    <li>Link1</li>
-                    <li>Link2</li>
                     {user ? (<li onClick={signOutHandler}>Signout</li>) : (<Link to='/Login'><li>Sign-In</li></Link>)}
                 </div>
             </motion.div>
